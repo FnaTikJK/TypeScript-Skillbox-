@@ -33,3 +33,15 @@ function Digitize(numb: number): number[] {
 ```
 
 # Задание 6. Алгоритмическая задача (2)
+
+```
+function GetDigitalSum(numb: number): number {
+    let sum: number = 0;
+    while(numb>0){
+        sum += numb % 10;
+        numb = Math.floor(numb/10);
+    }
+    return sum < 10 ? sum
+        : GetDigitalSum(sum);
+}
+```
