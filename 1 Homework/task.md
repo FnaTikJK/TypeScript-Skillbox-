@@ -40,8 +40,43 @@ const coords = [e.posX, e.posY];
 const coords = [e.x, e.y];
 ```
 # Задание 3. Использование нетипизированного кода
+```
+function someFunc(data) {
+  return data.reduce((acc, current) => {
+        acc + Number(current.age > 18 && current.isMale), 0);
+    };
+}
+```
+Код, по идее, вообще не скомпилируется, тк написан неправильно. Но я предполагаю, что он ведёт счёт и увеличивает счётчик если ему подали объект с полями age и isMale и они удовлетворяют определённым условиям
+```
+type Human = {
+    name: string,
+    age: number,
+    gender: 'male' | 'female',
+}
+function someFunc(data: Human[]): number {
+  return data.reduce((acc: number, current: Human) => {
+        acc + Number(current.age > 18 && current.gender === 'male'), 0);
+    };
+}
+```
+Код опять не скомпилируется, но здесь уже более явная реализация, что именно считает программа - кол-во мужчин в возрасте старше 18 лет.
 
 # Задание 4. Написание кода
+```
+function GetPartialReversedString(line: string){
+    let res: string = "";
+    for (let s of line.split(' '))
+        res += reverse(s) + " ";
+    return res;
+}
+
+# Пришлось написать кастомный ревёрс строки (в шоке что тут его нет)
+function reverse(s){
+    return s.split("").reverse().join("");
+}
+```
+
 
 # Задание 5. Алгоритмическая задача (1)
 
