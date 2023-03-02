@@ -64,16 +64,17 @@ function someFunc(data: Human[]): number {
 
 # Задание 4. Написание кода
 ```
-function GetPartialReversedString(line: string){
-    let res: string = "";
-    for (let s of line.split(' '))
-        res += reverse(s) + " ";
-    return res;
+function GetPartialReversedString(line: string): string{
+    let res: string[] = [];
+    line.split(' ')
+        .forEach(e => 
+            res.push(reverse(e)));
+    return res.join(" ");
 }
 
-# Пришлось написать кастомный ревёрс строки (в шоке что тут его нет)
 function reverse(s){
     return s.split("").reverse().join("");
+}
 }
 ```
 
