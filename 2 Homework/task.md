@@ -34,5 +34,37 @@ const arr5: { id: number, name: string }[] = [
 ```
 # Задание 3. Массивы (часть 1)
 ```
+function CapitalizeLine(line: string): string{
+    let res: string[] = [];
+    line.split(' ')
+        .forEach(e =>
+            res.push(CapitalizeWord(e)));
+    return res.join(" ");
+}
 
+function CapitalizeWord(s: string): string
+{
+    return s && s[0].toUpperCase() + s.slice(1);
+}
+```
+# Задание 4. Массивы (часть 2)
+```
+function CapitalizeLine(line: string): string{
+    let res: string[] = [];
+    let indToDelete: number;
+    line.split(' ')
+        .forEach((value, index) =>{
+            if (index === 0)
+                indToDelete = value.length;
+            if (index === indToDelete)
+                return;
+            res.push(CapitalizeWord(value))
+        });
+    return res.join(" ");
+}
+
+function CapitalizeWord(s: string): string
+{
+    return s && s[0].toUpperCase() + s.slice(1);
+}
 ```
