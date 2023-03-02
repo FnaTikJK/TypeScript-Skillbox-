@@ -70,5 +70,80 @@ function CapitalizeWord(s: string): string
 ```
 # Задание 5. Объекты v2 — код
 ```
-
+function AreEqual(a: object, b: object): boolean{
+    for (var key in a) {
+        if (!b.hasOwnProperty(key) || b[key] !== a[key])
+            return false;
+    }
+    for (var key in b) {
+        if (!a.hasOwnProperty(key) || b[key] !== a[key])
+            return false;
+    }
+    return true;
+}
+```
+# Задание 6. Community (часть 1)
+```
+export type User = {
+    name: string,
+    age: number,
+    occupation: string
+};
+export const users: User[] = [
+    {
+        name: 'Roman Abramov',
+        age: 25,
+        occupation: 'Millionaire'
+    },
+    {
+        name: 'Andrey Fox',
+        age: 23,
+        occupation: 'Developer'
+    }
+];
+export function logPerson(user: User) {
+    console.log(` - ${user.name}, ${user.age}`);
+}
+console.log('Users:');
+users.forEach(logPerson);
+```
+# Задание 7. Community (часть 2)
+```
+type User = {
+    name: string;
+    age: number;
+    occupation: string;
+}
+type Admin = {
+    name: string;
+    age: number;
+    role: string;
+}
+export type Person = User | Admin;
+export const persons: Person[] = [
+    {
+        name: 'Roman Abramov',
+        age: 25,
+        occupation: 'Millionaire'
+    },
+    {
+        name: 'Jane Doe',
+        age: 32,
+        role: 'Administrator'
+    },
+    {
+        name: 'Andrey Fox',
+        age: 23,
+        occupation: 'Developer'
+    },
+    {
+        name: 'Bruce Willis',
+        age: 64,
+        role: 'World saver'
+    }
+];
+export function logPerson(user: Person) {
+    console.log(` - ${user.name}, ${user.age}`);
+}
+persons.forEach(logPerson);
 ```
