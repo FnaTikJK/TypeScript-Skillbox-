@@ -65,6 +65,9 @@ class SomeExternalApi {
         },{
             data: new UserResponse(),
             meta: new LoadMetaMessage()
+        },{
+            data: this.auth(),
+            meta: new LoadMetaMessage()
         },]
     }
 
