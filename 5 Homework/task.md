@@ -22,3 +22,6 @@ let oldestPerson: Person = getOldestObj([{age:10, name:"10"}, {age:1, name:"1"}]
 let oldestBridge: Bridge = getOldestObj([{age:10, city:"10"}, {age:1, city:"1"}])
 let oldestWine: Wine = getOldestObj([{age:10, manufacturer:"10", grade:"asd"}, {age:1, manufacturer:"1", grade:"рпва"}])
 ```
+# Задание 2. Типы
+
+# Задание 3. Классы
