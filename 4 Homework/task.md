@@ -70,12 +70,11 @@ class Product extends ILogged{
 ```
 class ILogged {
     log(){
-        let text = (Object.getOwnPropertyNames(this)
+        console.log((Object.getOwnPropertyNames(this)
             .map(prop => typeof this[prop]['log'] === 'function' ?
                 this[prop].log()
                 : `${prop}: ${this[prop]}`))
-            .join(";");
-        console.log(text);
+            .join(";"));
     }
 }
 ```
