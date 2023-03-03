@@ -80,3 +80,34 @@ console.log(player.y === -1); // true
 ```
 Enum делает код более чиатбельным.
 # Задание 4. Community (часть 3)
+```
+export function logPerson(person: Person) {
+    let additionalInformation: string;
+    if ('role' in person) {
+        additionalInformation = person.role;
+    } else {
+        additionalInformation = person.occupation;
+    }
+    console.log(` - ${person.name}, ${person.age}, ${additionalInformation}`);
+}
+```
+# Задание 5. Community (часть 4)
+```
+export function logPerson(person: Person) {
+    let additionalInformation: string = '';
+    if (isAdmin(person)) {
+        additionalInformation = (person as Admin).role;
+    }
+    if (isUser(person)) {
+        additionalInformation = (person as User).occupation;
+    }
+    console.log(` - ${person.name}, ${person.age}, ${additionalInformation}`);
+}
+```
+# Задание 6. Community (часть 5)
+```
+type Criteria = {
+    name?: string,
+    age?: number
+}
+```
