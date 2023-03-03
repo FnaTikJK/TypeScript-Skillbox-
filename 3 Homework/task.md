@@ -13,7 +13,29 @@ function getHouse(): House {
 ```
 Ошибка была из-за того что мы обращаемся к неинициализированным полям, тк соверашем плохое приведение типов. Исправить можно возвращая сразу нужный объект или указав ему нужный тип самостоятельно.
 # Задание 2. Тайпгарды + объединение
-
+Обычные тайпгарды
+```
+if(IsCat(pet))
+    return (pet as Cat).meow();
+if(IsDog(pet))
+    return (pet as Dog).bark();
+```
+Кастомные
+```
+function IsCat(pet: Cat | Dog): boolean{
+    return pet.hasOwnProperty('meow');
+}
+function IsDog(pet: Cat | Dog): boolean{
+    return pet.hasOwnProperty('bark');
+}
+```
+Через in
+```
+if ('meow' in pet)
+    return pet.meow();
+if ('bark' in pet)
+    return pet.bark();
+```
 # Задание 3. Перечисления
 ```
 enum Directions {
