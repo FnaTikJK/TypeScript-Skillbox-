@@ -183,3 +183,120 @@ console.log();
 console.log("Отсортированные")
 array.forEach(e => e.log());
 ```
+# Задание 3. Интерфейсы/наследование
+```
+interface CanRun {
+    run(): boolean;
+}
+interface CanSwim {
+    swim(): boolean;
+}
+interface CanFly {
+    fly(): boolean;
+}
+
+abstract class Human implements CanRun, CanSwim, CanFly {
+    abstract run(): boolean;
+    abstract swim(): boolean;
+    abstract fly(): boolean;
+}
+
+
+class Nibiru extends Human {
+    fly(): boolean {
+        return false;
+    }
+
+    run(): boolean {
+        return true;
+    }
+
+    swim(): boolean {
+        return false;
+    }
+}
+class Earthlings extends Human {
+    fly(): boolean {
+        return false;
+    }
+
+    run(): boolean {
+        return true;
+    }
+
+    swim(): boolean {
+        return true;
+    }
+}
+
+class Kryptonian extends Human {
+    fly(): boolean {
+        return true;
+    }
+
+    run(): boolean {
+        return true;
+    }
+
+    swim(): boolean {
+        return true;
+    }
+}
+```
+Честно говоря задание - кринж. Создаёт неправильное представление о наследовании.
+# Задание 4. Делегирование/агрегирование
+Реализуйте класс Job
+```
+class Job {
+    private _role: string;
+    private _salary: number;
+
+    constructor(role:string, salary: number) {
+        this._role = role;
+        this._salary = salary;
+    }
+    get salary(): number {
+        return this._salary;
+    }
+
+    Work(personName: string): void{
+        console.log(`${personName} сейчас работает как ${this._role}`)
+    }
+}
+```
+Реализуйте класс Person
+```
+class Person {
+    private _job: Job;
+    private _name: string;
+
+    constructor(name: string) {
+        this._name = name;
+    }
+    set job(value: Job){
+        this._job = value;
+    }
+
+    GetSalary(): number {
+        return this._job.salary;
+    }
+    Work(): void {
+        this._job.Work(this._name);
+    }
+}
+```
+Время приключений
+```
+let p1 = new Person('Alex');
+let p2 = new Person('Denis');
+let j1 = new Job('Токарь', 1000);
+let j2 = new Job('Лётчик', 5000);
+p1.job = j1;
+p2.job = j2;
+p1.Work();
+p2.Work();
+p1.job = j2;
+p2.job = j1;
+p1.Work();
+p2.Work();
+```
