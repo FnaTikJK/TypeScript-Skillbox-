@@ -1,12 +1,7 @@
 # Задание 1. Работа с функцией
 ```
-function ArrayDiff(a: number[], b: number[]): number[] {
-    let res: number[] = [];
-    for(let e of a) {
-        if (b.indexOf(e) === -1)
-            res.push(e)
-    }
-    return res;
+function arrayDiff(a: number[], b: number[]): number[] {
+    return a.filter(e => b.indexOf(e) === -1);
 }
 ```
 # Задание 2. Объединение типов + массивы
@@ -34,52 +29,25 @@ const arr5: { id: number, name: string }[] = [
 ```
 # Задание 3. Массивы (часть 1)
 ```
-function CapitalizeLine(line: string): string{
-    let res: string[] = [];
-    line.split(' ')
-        .forEach(e =>
-            res.push(CapitalizeWord(e)));
-    return res.join(" ");
-}
-
-function CapitalizeWord(s: string): string
-{
-    return s && s[0].toUpperCase() + s.slice(1);
+function capitalizeLine(line: string): string{
+    return line.split(' ')
+                .map(s => s && s[0].toUpperCase() + s.slice(1))
+                .join(' ');
 }
 ```
 # Задание 4. Массивы (часть 2)
 ```
-function CapitalizeLine(line: string): string{
-    let res: string[] = [];
-    let indToDelete: number;
-    line.split(' ')
-        .forEach((value, index) =>{
-            if (index === 0)
-                indToDelete = value.length;
-            if (index === indToDelete)
-                return;
-            res.push(CapitalizeWord(value))
-        });
-    return res.join(" ");
-}
-
-function CapitalizeWord(s: string): string
-{
-    return s && s[0].toUpperCase() + s.slice(1);
+function capitalizeLine(line: string): string{
+    let reversed = line.split(' ')
+                        .map(s => s && s[0].toUpperCase() + s.slice(1));
+    reversed.splice(reversed[0].length, 1)
+    return reversed.join(' ');
 }
 ```
 # Задание 5. Объекты v2 — код
 ```
-function AreEqual(a: object, b: object): boolean{
-    for (var key in a) {
-        if (!b.hasOwnProperty(key) || b[key] !== a[key])
-            return false;
-    }
-    for (var key in b) {
-        if (!a.hasOwnProperty(key) || b[key] !== a[key])
-            return false;
-    }
-    return true;
+function areEqual(a: object, b: object): boolean{
+    return JSON.stringify(a) === JSON.stringify(b);
 }
 ```
 # Задание 6. Community (часть 1)
