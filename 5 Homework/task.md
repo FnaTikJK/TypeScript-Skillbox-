@@ -24,26 +24,34 @@ let oldestWine: Wine = getOldestObj([{age:10, manufacturer:"10", grade:"asd"}, {
 ```
 # Задание 2. Типы
 ```
-class Resp {
+
+class UserResponse{
     id: number;
     name: string;
-}
-class UserResponse extends Resp{
     registrationDate: string;
 }
-class AuthResponse extends Resp{
+class AuthResponse{
+    id: number;
+    name: string;
     avatar: string;
     login: string;
     user_token: string;
 }
-class Meta { }
-class MetaTrackMessage extends Meta {
+class MetaTrackMessage {
     trackId: string;
-    trackerUrl: string
+    trackerUrl: string;
+    constructor() {
+        this.trackId = "1";
+        this.trackerUrl = "2";
+    }
 }
-class LoadMetaMessage extends Meta {
+class LoadMetaMessage {
     currentNodeId: string;
     currentNodeLoad: number;
+    constructor() {
+        this.currentNodeId = "1";
+        this.currentNodeLoad = 2;
+    }
 }
 
 class TResponse<TData, TMeta> {
@@ -52,23 +60,23 @@ class TResponse<TData, TMeta> {
 }
 
 class SomeExternalApi {
-    public static getUsers(): TResponse<Resp, Meta>[] {
+    public static getUsers<TMeta extends MetaTrackMessage | LoadMetaMessage>(TMetaConstr: { new(): TMeta})
+        : TResponse<UserResponse, TMeta>[] {
         return [{
-            data: new UserResponse(),
-            meta: new MetaTrackMessage()
-        },{
-            data: new UserResponse(),
-            meta: new LoadMetaMessage()
-        },{
-            data: new AuthResponse(),
-            meta: new MetaTrackMessage()
-        },{
-            data: new UserResponse(),
-            meta: new LoadMetaMessage()
-        },{
-            data: this.auth(),
-            meta: new LoadMetaMessage()
-        },]
+            data: {
+                id: 1,
+                name: "Alex",
+                registrationDate: "2020"
+            },
+            meta: new TMetaConstr(),
+        }, {
+            data: {
+                id: 2,
+                name: "Jack",
+                registrationDate: "2020"
+            },
+            meta: new TMetaConstr(),
+        }]
     }
 
     public static auth(): AuthResponse {
@@ -81,7 +89,7 @@ class SomeExternalApi {
         }
     }
 }
-console.log(SomeExternalApi.getUsers());
+console.log(SomeExternalApi.getUsers<MetaTrackMessage>(MetaTrackMessage));
 ```
 # Задание 3. Классы
 ```
