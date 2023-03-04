@@ -64,17 +64,12 @@ function someFunc(data: Human[]): number {
 
 # Задание 4. Написание кода
 ```
-function GetPartialReversedString(line: string): string{
-    let res: string[] = [];
-    line.split(' ')
-        .forEach(e => 
-            res.push(reverse(e)));
-    return res.join(" ");
-}
-
-function reverse(s){
-    return s.split("").reverse().join("");
-}
+function getPartialReversedString(line: string): string{
+    return line.split(' ')
+                .map(e => e.split('')
+                            .reverse()
+                            .join(''))
+                .join(' ');
 }
 ```
 
@@ -82,39 +77,25 @@ function reverse(s){
 # Задание 5. Алгоритмическая задача (1)
 
 ```
-#Функция-ответ задачи
-function GetSquaredDigits(numb:number) : number {
-    if (numb<0)
-        return numb;
-    let numbers: number[] = Digitize(numb);
-    let res: string = "";
-    for(let n of numbers){
-        res += (n * n).toString();
-    }
-    return Number(res);
-}
-
-#Разбивает число на массив цифр
-function Digitize(numb: number): number[] { 
-    let answer: number[] = [];
-    while(numb > 0){
-        answer.push(numb % 10);
-        numb = Math.floor(numb/10);
-    }
-    return answer.reverse();
+function getSquaredDigits(numb:number) : number {
+    return Number(numb.toString()
+                        .split('')
+                        .map(e => Math.pow(Number(e),2))
+                        .join(''));
 }
 ```
 
 # Задание 6. Алгоритмическая задача (2)
 
 ```
-function GetDigitalSum(numb: number): number {
-    let sum: number = 0;
-    while(numb>0){
-        sum += numb % 10;
-        numb = Math.floor(numb/10);
+function getDigitalSum(numb: number): number {
+    let cur: number = numb;
+    while (cur > 10) {
+        cur = cur.toString()
+            .split('')
+            .map(function (e) { return Number(e); })
+            .reduce(function (previousValue, currentValue) { return previousValue + currentValue; });
     }
-    return sum < 10 ? sum
-        : GetDigitalSum(sum);
+    return cur;
 }
 ```
