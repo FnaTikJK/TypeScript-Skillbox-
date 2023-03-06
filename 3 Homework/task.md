@@ -15,9 +15,9 @@ function getHouse(): House {
 # Задание 2. Тайпгарды + объединение
 Обычные тайпгарды
 ```
-if(IsCat(pet))
+if(pet.hasOwnProperty('meow'))
     return (pet as Cat).meow();
-if(IsDog(pet))
+if(pet.hasOwnProperty('bark'))
     return (pet as Dog).bark();
 ```
 Кастомные
