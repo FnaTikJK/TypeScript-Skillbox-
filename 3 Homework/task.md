@@ -93,13 +93,21 @@ export function logPerson(person: Person) {
 ```
 # Задание 5. Community (часть 4)
 ```
-export function logPerson(person: Person) {
+export function isAdmin(person: Person): person is Admin {
+    return person.type === 'admin';
+}
+
+export function isUser(person: Person): person is User {
+    return person.type === 'user';
+}
+
+export function logPerson(person: Person): void {
     let additionalInformation: string = '';
     if (isAdmin(person)) {
-        additionalInformation = (person as Admin).role;
+        additionalInformation = person.role;
     }
     if (isUser(person)) {
-        additionalInformation = (person as User).occupation;
+        additionalInformation = person.occupation;
     }
     console.log(` - ${person.name}, ${person.age}, ${additionalInformation}`);
 }
